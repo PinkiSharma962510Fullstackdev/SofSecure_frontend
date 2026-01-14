@@ -230,67 +230,35 @@ export default function ContactModal({ open, onClose }) {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  /* ======================
-     PROFESSIONAL VALIDATION
-  ====================== */
   const validateForm = () => {
-    const nameRegex = /^[A-Za-z\s]{2,50}$/;
-    const emailRegex =
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const phoneRegex = /^[0-9]{7,15}$/;
-
     if (!formData.firstName.trim()) {
-      alert("First Name is required");
+      alert("First name required");
       return false;
     }
-    if (!nameRegex.test(formData.firstName.trim())) {
-      alert("First Name should contain only letters and spaces (min 2 characters)");
-      return false;
-    }
-
     if (!formData.email.trim()) {
-      alert("Email is required");
+      alert("Email required");
       return false;
     }
-    if (!emailRegex.test(formData.email.trim())) {
-      alert("Please enter a valid email address");
-      return false;
-    }
-
     if (!formData.phone.trim()) {
-      alert("Phone number is required");
+      alert("Phone required");
       return false;
     }
-    if (!phoneRegex.test(formData.phone.trim())) {
-      alert("Phone number must be 7–15 digits only");
-      return false;
-    }
-
     if (!formData.message.trim()) {
-      alert("Message is required");
+      alert("Message required");
       return false;
     }
-    if (formData.message.trim().length < 10) {
-      alert("Message should be at least 10 characters long");
-      return false;
-    }
-
     return true;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // 🔒 browser submit block
+  const handleSubmit = async () => {
+    console.log("🔥 SUBMIT CLICKED"); // DEBUG
 
     if (!validateForm()) return;
 
     setLoading(true);
-
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/enquiry`,
@@ -298,7 +266,6 @@ export default function ContactModal({ open, onClose }) {
       );
 
       alert("Enquiry submitted successfully ✅");
-
       setFormData({
         title: "",
         companyName: "",
@@ -309,10 +276,9 @@ export default function ContactModal({ open, onClose }) {
         country: "",
         message: "",
       });
-
       onClose();
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
       alert("Something went wrong ❌");
     } finally {
       setLoading(false);
@@ -323,113 +289,48 @@ export default function ContactModal({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <motion.div
+          className="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-sm overflow-y-auto"
         >
           <motion.div
-            initial={{ y: 60, opacity: 0 }}
+            className="relative z-[10000] mx-auto my-20 max-w-3xl bg-black rounded-2xl p-10"
+            initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 60, opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="relative z-[10000] mx-auto my-10 w-full max-w-7xl bg-gradient-to-br from-[#0b0f14] via-[#0e131a] to-black rounded-3xl shadow-2xl border border-white/10"
           >
-            {/* CLOSE */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 text-white/60 hover:text-white text-2xl"
+              className="absolute top-4 right-4 text-white"
             >
               ✕
             </button>
 
-            {/* HEADER */}
-            <div className="px-12 pt-12 pb-8 border-b border-white/10">
-              <h2 className="text-4xl font-bold text-white">
-                We’re here to help
-              </h2>
-              <p className="text-gray-400 mt-3 max-w-2xl">
-                Connect with SofSecure to discuss IT audit, cybersecurity,
-                compliance, and enterprise risk advisory services.
-              </p>
-            </div>
+            {/* ⛔ NO FORM TAG */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" />
+              <input name="companyName" value={formData.companyName} onChange={handleChange} placeholder="Company Name" />
+              <input name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" />
+              <input name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" />
+              <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
+              <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" />
+              <input className="sm:col-span-2" name="country" value={formData.country} onChange={handleChange} placeholder="Country" />
+              <textarea
+                className="sm:col-span-2"
+                rows={4}
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Message"
+              />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              {/* LEFT INFO */}
-              <div className="p-12 space-y-10 border-r border-white/10 bg-white/5">
-                <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Mail className="w-5 h-5 text-[#30C4C1]" />
-                  info@sofsecure.com
-                </div>
-                <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Phone className="w-5 h-5 text-[#30C4C1]" />
-                  +91-8527611337
-                </div>
-              </div>
-
-              {/* FORM */}
-              <div className="p-12">
-                <form
-                  noValidate
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-                >
-                  {[
-                    { label: "Title", name: "title" },
-                    { label: "Company Name", name: "companyName" },
-                    { label: "First Name", name: "firstName" },
-                    { label: "Last Name", name: "lastName" },
-                    { label: "Your Email", name: "email", type: "email" },
-                    { label: "Business Phone", name: "phone" },
-                  ].map((field, i) => (
-                    <input
-                      key={i}
-                      type={field.type || "text"}
-                      name={field.name}
-                      value={formData[field.name]}
-                      onChange={
-                        field.name === "phone"
-                          ? (e) =>
-                              setFormData({
-                                ...formData,
-                                phone: e.target.value.replace(/[^0-9]/g, ""),
-                              })
-                          : handleChange
-                      }
-                      placeholder={field.label}
-                      className="w-full rounded-xl bg-white/5 border border-white/15 px-6 py-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#30C4C1]/50"
-                    />
-                  ))}
-
-                  <input
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    placeholder="Country"
-                    className="sm:col-span-2 w-full rounded-xl bg-white/5 border border-white/15 px-6 py-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#30C4C1]/50"
-                  />
-
-                  <textarea
-                    rows={6}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your requirement"
-                    className="sm:col-span-2 w-full rounded-xl bg-white/5 border border-white/15 px-6 py-4 text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#30C4C1]/50 resize-none"
-                  />
-
-                  <div className="sm:col-span-2 pt-4">
-                    {/* 🔴 IMPORTANT FIX */}
-                    <button
-                      type="button"
-                      onClick={handleSubmit}
-                      disabled={loading}
-                      className="w-full bg-[#30C4C1] text-black py-5 rounded-full text-lg font-semibold hover:scale-[1.02] transition"
-                    >
-                      {loading ? "Sending..." : "Submit Enquiry"}
-                    </button>
-                  </div>
-                </form>
-              </div>
+              <button
+                onClick={handleSubmit}
+                disabled={loading}
+                className="sm:col-span-2 bg-[#30C4C1] py-4 rounded-full font-bold"
+              >
+                {loading ? "Sending..." : "Submit Enquiry"}
+              </button>
             </div>
           </motion.div>
         </motion.div>
