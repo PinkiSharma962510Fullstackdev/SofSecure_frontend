@@ -96,7 +96,8 @@ const HeroSection = () => {
       </AnimatePresence>
 
       {/* OVERLAY */}
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-black/55 pointer-events-none" />
+
 
       {/* CONTENT */}
       <div className="relative h-full flex items-center pl-8 sm:pl-12 lg:pl-20 xl:pl-32">
