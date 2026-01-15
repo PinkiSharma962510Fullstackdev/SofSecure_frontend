@@ -31,7 +31,17 @@ const handleSubmit = async (e) => {
   setLoading(true);
 
   try {
-    await axios.post(`${import.meta.env.VITE_API_URL}/api/enquiry`, formData);
+    // 1️⃣ MongoDB save (FAST)
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/enquiry`,
+      formData
+    );
+
+    // 2️⃣ Google Sheet + Mail (SYNC API)
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/enquiry-sync`,
+      formData
+    );
 
     alert("Enquiry submitted successfully ✅");
 
@@ -47,6 +57,7 @@ const handleSubmit = async (e) => {
     });
 
     onClose();
+
   } catch (err) {
     console.error(err);
     alert("Something went wrong ❌");
@@ -54,7 +65,6 @@ const handleSubmit = async (e) => {
     setLoading(false);
   }
 };
-
 
 
  
