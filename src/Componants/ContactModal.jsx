@@ -25,7 +25,7 @@ const handleChange = (e) => {
     [e.target.name]: e.target.value,
   });
 };
-console.log("API URL 👉", import.meta.env.VITE_API_URL);
+// console.log("API URL 👉", import.meta.env.VITE_API_URL);
 const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
