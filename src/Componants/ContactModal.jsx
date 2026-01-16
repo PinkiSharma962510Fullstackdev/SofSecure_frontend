@@ -26,15 +26,51 @@ const handleChange = (e) => {
   });
 };
 // console.log("API URL 👉", import.meta.env.VITE_API_URL);
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   setLoading(true);
+
+//   try {
+//     // ✅ Single API call (MongoDB + Google Sheet + Mail)
+//     await axios.post(
+//       `${import.meta.env.VITE_API_URL}/api/enquiry`,
+//       formData
+//     );
+
+//     alert("Enquiry submitted successfully ✅");
+
+//     setFormData({
+//       title: "",
+//       companyName: "",
+//       firstName: "",
+//       lastName: "",
+//       email: "",
+//       phone: "",
+//       country: "",
+//       message: "",
+//     });
+
+//     onClose();
+//   } catch (err) {
+//     console.error(err);
+//     alert("Something went wrong ❌");
+//   } finally {
+//     setLoading(false);
+//   }
+// };
 const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
 
   try {
-    // ✅ Single API call (MongoDB + Google Sheet + Mail)
     await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/enquiry`,
-      formData
+       `${import.meta.env.VITE_API_URL}/api/enquiry`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
 
     alert("Enquiry submitted successfully ✅");
