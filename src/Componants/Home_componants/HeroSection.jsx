@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ContactModal from "../ContactModal";
 
 
-const SLIDE_DURATION = 2000; // 6s – premium timing
+const SLIDE_DURATION = 5000; // 6s – premium timing
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
