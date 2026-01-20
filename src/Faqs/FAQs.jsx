@@ -213,19 +213,33 @@ export default function HomeFAQs() {
                 </button>
 
                 {/* ANSWER */}
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="px-6 pb-6 text-gray-300 text-sm leading-relaxed"
-                    >
-                      {faq.answer}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                  {/* ANSWER */}
+<AnimatePresence initial={false}>
+  {isOpen && (
+    <motion.div
+      key="content"
+      initial={{ height: 0, opacity: 0, y: -8, filter: "blur(4px)" }}
+      animate={{
+        height: "auto",
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+      }}
+      exit={{ height: 0, opacity: 0, y: -6, filter: "blur(4px)" }}
+      transition={{
+        height: { duration: 0.35, ease: "easeInOut" },
+        opacity: { duration: 0.25, ease: "easeOut" },
+        y: { duration: 0.25, ease: "easeOut" },
+      }}
+      className="overflow-hidden"
+    >
+      <div className="px-6 pb-6 text-gray-300 text-sm leading-relaxed">
+        {faq.answer}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
               </motion.div>
             );
           })}

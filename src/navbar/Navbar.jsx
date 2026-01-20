@@ -412,20 +412,38 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full bg-black/60 border border-white/10 flex items-center justify-center">
-            <img src={logo} className="w-6 h-6" />
-          </div>
-          <span className="text-xl font-bold text-white">
-            Sof<span className="text-[#30C4C1]">Secure</span>
-          </span>
-        </Link>
+       <Link
+  to="/"
+  onClick={() =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+  className="flex items-center gap-3"
+>
+  <div className="w-11 h-11 rounded-full bg-black/60 border border-white/10 flex items-center justify-center">
+    <img src={logo} className="w-6 h-6" />
+  </div>
+
+  <span className="text-xl font-bold text-white">
+    Sof<span className="text-[#30C4C1]">Secure</span>
+  </span>
+</Link>
+
 
         {/* ================= DESKTOP NAV ================= */}
         <div className="hidden lg:flex items-center gap-8 px-8 py-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/15">
 
           <nav className="flex items-center gap-6 text-[15px]">
-            <NavLink to="/" end className={navClass}>Home</NavLink>
+            <NavLink
+  to="/"
+  end
+  onClick={() =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+  className={navClass}
+>
+  Home
+</NavLink>
+
             <NavLink to="/about" className={navClass}>About</NavLink>
 
             {/* SERVICES */}
@@ -453,7 +471,7 @@ export default function Navbar() {
             </div>
 
             <NavLink to="/careers" className={navClass}>Careers</NavLink>
-            <NavLink to="/contact" className={navClass}>Contact</NavLink>
+            {/* <NavLink to="/contact" className={navClass}>Contact</NavLink> */}
           </nav>
 
           <Link
