@@ -57,7 +57,7 @@ export default function AuditInsights() {
 
           <h2 className="relative z-10 text-4xl md:text-5xl font-bold leading-tight">
             Sustainable Business Futures <br />
-            <span className="text-[#30C4C1]">with SofSecure</span>
+            <span className="text-[#30C4C1]">with SofSecure.</span>
           </h2>
 
           <p className="relative z-10 text-gray-400 text-lg max-w-xl">

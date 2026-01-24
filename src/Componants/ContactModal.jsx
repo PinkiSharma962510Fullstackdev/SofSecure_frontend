@@ -417,7 +417,7 @@ export default function ContactModal({ open, onClose }) {
                       Gurugram, Haryana 122011
                       <div className="mt-2 flex items-center gap-2">
                         <Phone className="w-4 h-4 text-[#30C4C1]" />
-                        +91-8527611337
+                        +919220122201
                       </div>
                     </div>
 
@@ -426,16 +426,16 @@ export default function ContactModal({ open, onClose }) {
                       15 Great Queen Street, London WC2B 5TD
                       <div className="mt-2 flex items-center gap-2">
                         <Phone className="w-4 h-4 text-[#30C4C1]" />
-                        +44-7549842444
+                        +44 7881 859661
                       </div>
                     </div>
 
                     <div>
-                      <strong className="text-white block mb-1">United States</strong>
+                      <strong className="text-white block mb-1">United States of America</strong>
                       770 Pasquinelli Drive, Suite 424, Westmont, IL 60559
                       <div className="mt-2 flex items-center gap-2">
                         <Phone className="w-4 h-4 text-[#30C4C1]" />
-                        +1-852-761-1337
+                        +919220122201
                       </div>
                     </div>
                   </div>

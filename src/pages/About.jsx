@@ -8,7 +8,7 @@ export default function AboutSofSecure() {
         {/* ================= HEADER ================= */}
         <div className="text-center max-w-4xl mx-auto">
           <p className="text-cyan-400 font-semibold tracking-wide mb-3">
-            About SofSecure
+            About SofSecure.
           </p>
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
             Security, Trust & Technology — Built for the Future

@@ -20,12 +20,12 @@ export default function ServicesMarquee() {
   return (
     <div
       className="
-        sticky top-[80px] z-40 -mb-14
+        z-60 
         bg-[#1f252d]
         border-t border-white/5
         border-b border-white/5
-        py-6
-        h-[96px]
+       
+     
         overflow-hidden
       "
     >

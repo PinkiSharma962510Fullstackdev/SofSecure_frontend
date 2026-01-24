@@ -1,6 +1,9 @@
 
 
 import { motion } from "framer-motion";
+import { useState } from "react";
+import ContactModal from "../ContactModal";
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -31,13 +34,15 @@ export default function AboutInsightsSection() {
   "SOX Compliance",
 ];
 
+const [openContact, setOpenContact] = useState(false);
 
   return (
+    <>
     <section className="relative bg-[#1f252d] text-white py-28 ">
-      <div className="mx-auto max-w-7xl  px-6">
+      <div className="mx-auto max-w-7xl  px-6 ">
         
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start ">
 
           {/* LEFT – PREMIUM GRADIENT CARD */}
           <motion.div
@@ -100,7 +105,7 @@ export default function AboutInsightsSection() {
               {/* SPIRIT */}
               <div className="mb-12">
                 <h3 className="text-xl font-semibold mb-4">
-                  SPIRIT OF SofSecure
+                  SPIRIT OF SofSecure.
                 </h3>
 
                 <p className="text-gray-300 leading-relaxed text-sm">
@@ -111,9 +116,12 @@ export default function AboutInsightsSection() {
               </div>
 
               {/* CTA */}
-              <button className="inline-flex items-center gap-2 rounded-full bg-teal-500 px-10 py-4 text-black font-medium hover:bg-teal-600 transition">
-                Contact Us →
-              </button>
+             <button
+              onClick={() => setOpenContact(true)}
+              className="inline-flex items-center gap-2 rounded-full bg-teal-500 px-10 py-4 text-black font-medium hover:bg-teal-600 transition"
+            >
+              Contact Us →
+            </button>
             </div>
           </motion.div>
 
@@ -137,6 +145,12 @@ export default function AboutInsightsSection() {
         </div>
       </div>
     </section>
+    <ContactModal
+  open={openContact}
+  onClose={() => setOpenContact(false)}
+/>
+    </>
+    
   );
 }
 

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import ContactModal from "../../Componants/ContactModal";
 
 export default function ServiceLayout({
   title,
@@ -14,6 +15,7 @@ export default function ServiceLayout({
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState("forward");
+  const [openContact, setOpenContact] = useState(false);
 
   useEffect(() => {
     const max = title.length;
@@ -51,6 +53,7 @@ export default function ServiceLayout({
   }, [index, direction, title]);
 
   return (
+    <>
     <section className="relative bg-[#0b0f14] text-white px-6 py-32 min-h-screen overflow-hidden">
       <div className="max-w-6xl mx-auto space-y-24">
 
@@ -158,17 +161,23 @@ export default function ServiceLayout({
 
         {/* CTA */}
         <div className="pt-10">
-          <Link
+          <button
+          onClick={() => setOpenContact(true)}
             to="/contact"
             className="inline-flex items-center gap-3 px-10 py-5
                        rounded-full bg-[#30C4C1] text-black
                        font-semibold hover:scale-105 transition"
           >
             Speak with Our Experts →
-          </Link>
+          </button>
         </div>
 
       </div>
     </section>
+    <ContactModal
+  open={openContact}
+  onClose={() => setOpenContact(false)}
+/>
+    </>
   );
 }

@@ -20,15 +20,15 @@ export default function Careers() {
           className="text-center max-w-4xl mx-auto"
         >
           <p className="text-cyan-400 font-semibold tracking-widest uppercase mb-4">
-            Careers at SofSecure
+            Careers at SofSecure.
           </p>
 
           <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            Opportunities at <span className="text-cyan-400">SofSecure</span>
+            Opportunities at <span className="text-cyan-400">SofSecure.</span>
           </h1>
 
           <p className="text-gray-400 text-lg leading-relaxed">
-            At SofSecure, we don’t just build secure systems — we build
+            At SofSecure., we don’t just build secure systems — we build
             careers with purpose. Join a team where innovation, trust,
             and responsibility shape everything we do.
           </p>
@@ -70,7 +70,7 @@ export default function Careers() {
 
           <div className="relative bg-gradient-to-br from-cyan-500/10 to-blue-600/10 border border-white/10 rounded-3xl p-12">
             <h3 className="text-2xl font-semibold mb-4">
-              Why Work at SofSecure?
+              Why Work at SofSecure.?
             </h3>
             <ul className="space-y-3 text-gray-300">
               <li>• Purpose-driven security projects</li>
