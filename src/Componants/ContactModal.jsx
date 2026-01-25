@@ -307,12 +307,13 @@ export default function ContactModal({ open, onClose }) {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/enquiry`,
-        formData,
-        { headers: { "Content-Type": "application/json" } }
-      );
+      try {
+    await axios.post(
+      "https://sofsecure-backend-production.up.railway.app/api/enquiry",
+      formData,
+      { headers: { "Content-Type": "application/json" } }
+    );
+
 
       alert("Enquiry submitted successfully ✅");
 
